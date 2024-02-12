@@ -145,7 +145,7 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # NOTE: OpenJDK Setup
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH=$PATH:/opt/homebrew/opt/openjdk/bin
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 # export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home' # Init at 2021
@@ -160,14 +160,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # NOTE: Yarn Setup
-export PATH="$PATH:$(yarn global bin)"
+export PATH=$PATH:$(yarn global bin)
 
 # NOTE: Zsh Setup (z)
 . `brew --prefix`/etc/profile.d/z.sh
 
 # NOTE: pnpm setup
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PNPM_HOME=$HOME/Library/pnpm
+export PATH="$PATH:$PNPM_HOME"
 # pnpm endexport 
 
 # NOTE: zsh-syntax-highlighting plugin from brew Setup
@@ -176,6 +176,12 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # NOTE: thefuck setup
 eval $(thefuck --alias fk)
+
+# NOTE: rust setup
+export PATH=$PATH:$HOME/.cargo/bin:
+
+# NOTE: This line will remove duplicate paths
+typeset -U PATH 
 
 # NOTE: Power10k setup (allow to run p10k command)
 source ~/powerlevel10k/powerlevel10k.zsh-theme
