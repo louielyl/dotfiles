@@ -162,9 +162,6 @@ export NVM_DIR="$HOME/.nvm"
 # NOTE: Yarn Setup
 export PATH=$PATH:$(yarn global bin)
 
-# NOTE: Zsh Setup (z)
-. `brew --prefix`/etc/profile.d/z.sh
-
 # NOTE: pnpm setup
 export PNPM_HOME=$HOME/Library/pnpm
 export PATH="$PATH:$PNPM_HOME"
@@ -187,3 +184,7 @@ typeset -U PATH
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 # NOTE: To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# NOTE: Zoxide Setup
+eval "$(zoxide init zsh)"
+
