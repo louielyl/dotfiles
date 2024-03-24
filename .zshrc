@@ -185,6 +185,13 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # NOTE: To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# NOTE: pyenv for old version Pythons
+export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # NOTE: Zoxide Setup
 eval "$(zoxide init zsh)"
 
