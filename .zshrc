@@ -195,3 +195,5 @@ eval "$(pyenv init -)"
 # NOTE: Zoxide Setup
 eval "$(zoxide init zsh)"
 
+
+export GPG_TTY=$(tty)
