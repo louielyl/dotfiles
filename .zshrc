@@ -83,6 +83,7 @@ plugins=(
   autoupdate
   you-should-use
   zsh-vi-mode
+  zsh-docker-aliases
 )
 # NOTE: This line is the line that initiates oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
