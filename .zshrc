@@ -84,6 +84,8 @@ plugins=(
   you-should-use
   zsh-vi-mode
   zsh-docker-aliases
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 # NOTE: This line is the line that initiates oh-my-zsh.
 source $ZSH/oh-my-zsh.sh
@@ -116,6 +118,7 @@ source $ZSH/oh-my-zsh.sh
 
 # NOTE: Base setup
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST # NOTE: For caching (https://stackoverflow.com/a/71271754/14923262)
+HISTSEARCH="history-beginning-search"
 
 # NOTE: Personal aliases
 alias vim="nvim --listen /tmp/nvim-server.pipe" # NOTE: Suggested by lazygit.nvim
@@ -167,10 +170,6 @@ export PATH=$PATH:$(yarn global bin)
 export PNPM_HOME=$HOME/Library/pnpm
 export PATH="$PATH:$PNPM_HOME"
 # pnpm endexport 
-
-# NOTE: zsh-syntax-highlighting plugin from brew Setup
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # NOTE: thefuck setup
 eval $(thefuck --alias fk)
