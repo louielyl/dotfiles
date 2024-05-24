@@ -192,8 +192,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# NOTE: fzf Setup
+source <(fzf --zsh)
+
 # NOTE: Zoxide Setup
 eval "$(zoxide init zsh)"
-
 
 export GPG_TTY=$(tty)
