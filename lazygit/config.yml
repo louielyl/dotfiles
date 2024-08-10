@@ -3,9 +3,7 @@ gui:
   windowSize: 'normal' # one of 'normal' | 'half' | 'full' default is 'normal'
   scrollHeight: 24 # how many lines you scroll by
 os:
-  editPreset: 'nvim'
-  editCommand: 'nvim'
-  # editCommandTemplate: '{{editor}} --server /tmp/nvim-server.pipe --remote-tab "$(pwd)/{{filename}}"'
+  edit: 'nvim {{filename}}'
 git:
     overrideGpg: true
     nerdFontsVersion: "3"
