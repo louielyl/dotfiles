@@ -210,4 +210,7 @@ source <(fzf --zsh)
 # NOTE: Zoxide Setup
 eval "$(zoxide init zsh)"
 
+# NOTE: Go Setup
+export PATH="$PATH:$(go env GOPATH)/bin"
+
 export GPG_TTY=$(tty)
