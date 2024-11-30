@@ -12,6 +12,9 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# NOTE: Zsh-vi-mode settings, to prevent the zvm override other keybinds, such as fzf in insert mode
+ZVM_INIT_MODE=sourcing
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -87,7 +90,8 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
-# NOTE: This line is the line that initiates oh-my-zsh.
+
+# NOTE: Initiates oh-my-zsh with plugins above.
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
