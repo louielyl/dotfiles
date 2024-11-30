@@ -124,6 +124,9 @@ source $ZSH/oh-my-zsh.sh
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST # NOTE: For caching (https://stackoverflow.com/a/71271754/14923262)
 HISTSEARCH="history-beginning-search"
 
+# NOTE: Brew setup
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # NOTE: Personal aliases
 alias vim="nvim --listen /tmp/nvim-server.pipe" # NOTE: Suggested by lazygit.nvim
 alias vnvim='nvim $HOME/.config/nvim' # NOTE: Suggested by lazygit.nvim
