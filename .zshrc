@@ -213,4 +213,8 @@ eval "$(zoxide init zsh)"
 # NOTE: Go Setup
 export PATH="$PATH:$(go env GOPATH)/bin"
 
+# NOTE: GVM Setup
+[[ -s "/Users/louie/.gvm/scripts/gvm" ]] && source "/Users/louie/.gvm/scripts/gvm"
+
 export GPG_TTY=$(tty)
+
