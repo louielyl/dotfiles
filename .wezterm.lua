@@ -12,23 +12,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.window_padding = { bottom = 0 }
 
-local plainLayer = {
-	source = {
-		Gradient = {
-			orientation = "Vertical",
-			colors = {
-				"#24283b", -- bg
-				"#1f2335", -- bg_dark
-				-- "#1b1e2d", -- bg_dark1
-			},
-		},
-	},
-	width = "100%",
-	height = "100%",
-	opacity = 1,
-}
-
-local solidLayer = {
+local softLayer = {
 	source = {
 		Gradient = {
 			orientation = "Vertical",
@@ -44,6 +28,38 @@ local solidLayer = {
 	opacity = 0.95,
 }
 
+local transparentLayer = {
+	source = {
+		Gradient = {
+			orientation = "Vertical",
+			colors = {
+				"#24283b", -- bg
+				"#1f2335", -- bg_dark
+				-- "#1b1e2d", -- bg_dark1
+			},
+		},
+	},
+	width = "100%",
+	height = "100%",
+	opacity = 0.25,
+}
+
+local solidLayer = {
+	source = {
+		Gradient = {
+			orientation = "Vertical",
+			colors = {
+				"#24283b", -- bg
+				"#1f2335", -- bg_dark
+				-- "#1b1e2d", -- bg_dark1
+			},
+		},
+	},
+	width = "100%",
+	height = "100%",
+	opacity = 1,
+}
+
 local imageLayer = {
 	source = {
 		File = "/Users/louie/wallpaper.jpg",
@@ -52,20 +68,30 @@ local imageLayer = {
 	opacity = 0.04,
 }
 
-local background = {
-	solidLayer,
-	imageLayer,
+local dummyLayer = { source = { Color = "black" }, opacity = 0 }
+
+-- NOTE: Fill with dummy layer
+local background_modes = {
+	{ softLayer },
+	{ transparentLayer, dummyLayer },
+	{ solidLayer,       dummyLayer, dummyLayer },
+	-- image_background_config,
 }
 
-config.background = background
+config.background = background_modes[1]
 
-wezterm.on("toggle-opacity", function(window, pane)
+wezterm.on("cycle-background", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
-	if not overrides.background or #overrides.background == 2 then
-		overrides.background = { plainLayer }
-	else
-		overrides.background = { solidLayer, imageLayer }
+
+-- NOTE: Use the length of background layers to identify which stage it is, and is next
+	if not overrides.background or #overrides.background == 1 then
+		overrides.background = background_modes[2]
+	elseif #overrides.background == 2 then
+		overrides.background = background_modes[3]
+	elseif #overrides.background == 3 then
+		overrides.background = background_modes[1]
 	end
+
 	window:set_config_overrides(overrides)
 end)
 
@@ -73,7 +99,7 @@ config.keys = {
 	{
 		key = "B",
 		mods = "CTRL",
-		action = wezterm.action.EmitEvent("toggle-opacity"),
+		action = wezterm.action.EmitEvent("cycle-background"),
 	},
 }
 
