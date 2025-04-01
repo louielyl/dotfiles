@@ -206,4 +206,11 @@ source <(fzf --zsh)
 # NOTE: Zoxide Setup
 eval "$(zoxide init zsh)"
 
+# NOTE: GPG
 export GPG_TTY=$(tty)
+
+# NOTE: Secrets
+if [ -f "$HOME/.secrets" ]; then
+  source "$HOME/.secrets"
+fi
+
