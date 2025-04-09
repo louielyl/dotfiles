@@ -62,10 +62,10 @@ local solidLayer = {
 
 local imageLayer = {
 	source = {
-		File = "/Users/louie/wallpaper.jpg",
+		File = "/Users/louie/wallpaper.png",
 	},
 	repeat_x = "NoRepeat",
-	opacity = 0.04,
+	opacity = 0.1,
 }
 
 local dummyLayer = { source = { Color = "black" }, opacity = 0 }
@@ -75,6 +75,7 @@ local background_modes = {
 	{ softLayer },
 	{ transparentLayer, dummyLayer },
 	{ solidLayer,       dummyLayer, dummyLayer },
+	{ softLayer,        imageLayer, dummyLayer, dummyLayer },
 	-- image_background_config,
 }
 
@@ -83,12 +84,14 @@ config.background = background_modes[1]
 wezterm.on("cycle-background", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
 
--- NOTE: Use the length of background layers to identify which stage it is, and is next
+	-- NOTE: Use the length of background layers to identify which stage it is, and is next
 	if not overrides.background or #overrides.background == 1 then
 		overrides.background = background_modes[2]
 	elseif #overrides.background == 2 then
 		overrides.background = background_modes[3]
 	elseif #overrides.background == 3 then
+		overrides.background = background_modes[4]
+	elseif #overrides.background == 4 then
 		overrides.background = background_modes[1]
 	end
 
