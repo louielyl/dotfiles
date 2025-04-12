@@ -76,6 +76,7 @@ local background_modes = {
 	{ transparentLayer, dummyLayer },
 	{ solidLayer,       dummyLayer, dummyLayer },
 	{ softLayer,        imageLayer, dummyLayer, dummyLayer },
+	{ solidLayer,       imageLayer, dummyLayer, dummyLayer, dummyLayer },
 	-- image_background_config,
 }
 
@@ -92,6 +93,8 @@ wezterm.on("cycle-background", function(window, pane)
 	elseif #overrides.background == 3 then
 		overrides.background = background_modes[4]
 	elseif #overrides.background == 4 then
+		overrides.background = background_modes[5]
+	elseif #overrides.background == 5 then
 		overrides.background = background_modes[1]
 	end
 
